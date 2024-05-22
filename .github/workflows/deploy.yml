@@ -25,6 +25,8 @@ jobs:
         run: npm run build
         env:
           REACT_APP_BACKEND_URL: ${{ secrets.API_URL }}
+      - name: Verify build directory
+        run: ls -la build
       - name: Archive build
         uses: actions/upload-artifact@v2
         with:
@@ -38,6 +40,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build
+          path: build
+      - name: Verify downloaded build directory
+        run: ls -la build
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
