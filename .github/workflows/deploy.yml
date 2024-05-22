@@ -40,9 +40,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build
-          path: build
+          path: ./build
       - name: Verify downloaded build directory
-        run: ls -la build
+        run: ls -la ./build
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -55,4 +55,4 @@ jobs:
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
       - name: Copy files to the server
         run: |
-          scp -r build/* root@165.232.112.81:~/realworld/public
+          scp -r ./build/* root@165.232.112.81:~/realworld/public
